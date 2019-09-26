@@ -34,8 +34,8 @@
 <script>
     $(function () {
         $.ajaxSetup({ cache: false });
-        getGit("./json/gits.json", "git");
-        getGit("./json/phps.json", "php");
+        getGit("https://mikiakira.github.io/bookmarks/json/gits.json", "git");
+        getGit("https://mikiakira.github.io/bookmarks/json/phps.json", "php");
         $("#app").on("change", ".bookmark", function () {
             window.open($(this).val());
         });
