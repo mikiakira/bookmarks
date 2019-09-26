@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="icon" href="favicon.ico">
+    <meta name="description" content="">
+    <meta name="author" content="Web Atelier Midori">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href=".css"> -->
+    <!-- <style type="text/css"></style> -->
+</head>
+<body>
+<div id="app">
+    <form>
+        <div class="form-group">
+            <!-- E-mail -->
+            <label for="git">Git</label>
+            <select name="git" id="git" class="form-control bookmark">
+            </select>
+        </div>
+        <div class="form-group">
+            <!-- E-mail -->
+            <label for="php">PHP</label>
+            <select name="php" id="php" class="form-control bookmark">
+            </select>
+        </div>
+    </form>
+</div>
+<script
+        src="//code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"
+></script>
+<script>
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        getGit("./json/gits.json", "git");
+        getGit("./json/phps.json", "php");
+        $("#app").on("change", ".bookmark", function () {
+            window.open($(this).val());
+        });
+    });
+    function getGit(url, target) {
+        
+        $.post(url, function(data) {
+            let optionData = '';
+            let json = data;
+            for (var i in json) {               
+                optionData += "<option value='";
+                optionData += json[i].url;
+                optionData += "'>";
+                optionData += json[i].title;
+                optionData += "</option>";
+            }
+            $("#"+target+"").append(optionData);        
+        });
+
+    }
+</script>
+</body>
+</html>
