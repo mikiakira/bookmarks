@@ -42,7 +42,7 @@
     });
     function getGit(url, target) {
         
-        $.post(url, function(data) {
+        $.getJSON(url, function(data) {
             let optionData = '';
             let json = data;
             for (var i in json) {               
